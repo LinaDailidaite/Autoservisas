@@ -3,33 +3,66 @@
 {% block title %}Užsakymai{% endblock %}
 
 {% block content %}
-  <h1>Užsakymai:</h1>
-  {% if orders %}
-  <ul>
-    {% for order in orders %}
-      <li>
-        <a href="{% url 'order' order.id %}">{{ order.date }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-    <p>Užsakymų nėra.</p>
-  {% endif %}
-  <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; pirmas</a>
-            <a href="?page={{ page_obj.previous_page_number }}">atgal</a>
-        {% endif %}
+<div class="container mt-4">
+    <h1 class="mb-4">Užsakymai:</h1>
 
-        <span class="current">
-            {{ page_obj.number }} iš {{ page_obj.paginator.num_pages }}
-        </span>
+    {% if orders %}
+    <div class="table-responsive shadow-sm bg-white rounded p-3" style="background-color: #fdfaf5 !important; border: 1px solid #e2d1b9;">
+        <table class="table table-hover align-middle">
+            <thead style="background-color: #4a5d4e; color: white;">
+                <tr>
+                    <th>Data</th>
+                    <th>Automobilis</th>
+                    <th>Suma (€)</th>
+                    <th>Statusas</th>
+                    <th class="text-end">Veiksmas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.date }}</td>
+                    <td><strong>{{ order.car }}</strong></td>
+                    <td>{{ order.total }} €</td>
+                    <td>
+                        <span class="badge
+                            {% if order.status == 'v' %}bg-primary
+                            {% elif order.status == 'i' %}bg-success
+                            {% elif order.status == 'p' %}bg-warning text-dark
+                            {% else %}bg-danger{% endif %}">
+                            {{ order.get_status_display }}
+                        </span>
+                    </td>
+                    <td class="text-end">
+                        <a href="{% url 'order' order.id %}" class="btn btn-sm btn-custom">Plačiau</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <p class="alert alert-info">Užsakymų šiuo metu nėra.</p>
+    {% endif %}
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">pirmyn</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">paskutinis &raquo;</a>
-        {% endif %}
-    </span>
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo; pirmas</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">atgal</a></li>
+            {% endif %}
+
+            <li class="page-item disabled">
+                <span class="page-link text-dark">
+                    {{ page_obj.number }} iš {{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">pirmyn</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">paskutinis &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 {% endblock %}

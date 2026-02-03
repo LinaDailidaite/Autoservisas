@@ -27,7 +27,20 @@ class Car(models.Model):
 class Order(models.Model):
     date = models.DateField(verbose_name="Date", auto_now_add=True)
     car = models.ForeignKey(to="Car", on_delete=models.SET_NULL, null=True, blank=True)
+    LOAN_STATUS = (
+        ('p', 'Patvirtinta'),
+        ('v', 'Vykdoma'),
+        ('i', 'Įvykdyta'),
+        ('at', 'Atšaukta'),
+    )
 
+    status = models.CharField(
+        max_length=2,
+        choices=LOAN_STATUS,
+        blank=True,
+        default='p',
+        help_text='Užsakymo statusas',
+    )
     def __str__(self):
         return f"{self.car} ({self.date})"
 

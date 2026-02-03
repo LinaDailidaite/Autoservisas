@@ -62,3 +62,47 @@ p {
 .bg-primary {
     background-color: #2C3930 !important;
 }
+
+/* mygtuko stilius */
+ body .btn-custom {
+    background-color: #3F4F44 !important;
+    color: #ECECEC !important;
+    border: 2px solid #a68a64 !important;
+    padding: 10px 25px !important;
+    display: inline-block !important;
+    font-family: 'Bebas Neue', sans-serif
+}
+
+/* Efektas užvedus pelę */
+body .btn-custom:hover {
+    background-color: #a68a64 !important;
+    color: white !important;
+}
+
+.card {
+    border: none;
+    background-color: #ECECEC;
+}
+
+.card-title {
+    color: #4a5d4e;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+}
+
+.service-name {
+    font-family: 'Jost', sans-serif;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.service-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    color: #4a5d4e;
+}
+
+.services-list {
+    background: transparent !important;
+}

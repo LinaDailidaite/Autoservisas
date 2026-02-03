@@ -7,4 +7,7 @@
 <p><strong>Automobilis: </strong>{{ car.make }} {{ car.model }}</p>
 <p><strong>Valstybinis numeris: </strong>{{ car.license_plate }}</p>
 <p><strong>VIN kodas: </strong>{{ car.vin_code }}</p>
+{% if car.cover %}
+<img class="card-img-top mb-3" style="max-width: 20%" src="{{ car.cover.url }}">
+{% endif %}
 {% endblock %}

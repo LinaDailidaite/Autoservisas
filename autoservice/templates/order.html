@@ -13,12 +13,21 @@
     {% endif %}
 </p>
 
-<h3>Paslaugos:</h3>
-<ul>
-{% for line in order.lines.all %}
-    <li>{{ line.service.name }} x {{ line.quantity }} ({{ line.line_sum }} €)</li>
-{% endfor %}
-</ul>
-
-<p><strong>Viso: </strong>{{ order.total }} €</p>
+<div class="mt-3">
+    <h3 style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 0px; font-weight: 900;" class="fw-bold">PASLAUGOS:</h3>
+    <div class="services-list">
+        {% for line in order.lines.all %}
+            <div class="d-flex justify-content-between">
+                <span class="service-name text-uppercase" style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px;">
+                    {{ line.service.name }}
+                    <span class="text-muted" style="font-size: 1.2rem;">x {{ line.quantity }}</span>
+                </span>
+                <span class="service-price fw-bold" style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;">
+                    {{ line.line_sum }} €
+                </span>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<p class="mt-3"><strong>Viso: </strong>{{ order.total }} €</p>
 {% endblock %}

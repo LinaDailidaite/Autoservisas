@@ -14,14 +14,14 @@
         <div class="card mb-4 shadow-sm w-100"> {% if car.cover %}
                 <img src="{{ car.cover.url }}" class="card-img-top" alt="{{ car.model }}" style="height: 300px; object-fit: cover;">
             {% else %}
-                <img src="{% static 'img/no-image.jpg' %}" class="card-img-top" style="height: 300px; object-fit: cover;">
+                <img src="{% static 'img/no-image.png' %}" class="card-img-top" style="height: 300px; object-fit: cover;">
             {% endif %}
 
             <div class="card-body">
                 <h5 class="card-title">{{ car.make }} {{ car.model }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Valst. nr: {{ car.license_plate }}</h6>
                 <p class="card-text">Klientas: {{ car.client_name }}</p>
-                <a href="{% url 'car' car.id %}" class="btn btn-sm btn-outline-primary">Peržiūrėti informaciją</a>
+                <a href="{% url 'car' car.id %}" class="btn btn-custom">Plačiau</a>
             </div>
         </div>
     </div>
