@@ -1,0 +1,64 @@
+body {
+  background-color: #A27B5C;
+}
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 60px;
+  color: whitesmoke;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  color: whitesmoke;
+  text-align: center;
+}
+p {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+}
+
+.report-block {
+  font-family: "Jost", sans-serif;
+  color: whitesmoke;
+  text-align: left;
+  font-size: 30px
+}
+
+.navbar-dark .nav-link {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #whitesmoke;
+    font-size: 30px
+}
+
+.navbar-dark .nav-link:hover {
+    color: #ffffff;
+}
+
+
+.section1 {
+    background-color: #A27B5C;
+    color: whitesmoke;
+}
+
+.section2 {
+    background-color: #A27B5C;
+    color: #fff;
+    width: 100%;
+    padding: 20px;
+    text-align: center
+}
+
+.bg-dark {
+    background-color: #3F4F44 !important;
+    color: #ffffff;
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.bg-primary {
+    background-color: #2C3930 !important;
+}

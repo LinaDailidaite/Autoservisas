@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Užsakymas{% endblock %}
+
+{% block content %}
+<p><strong>Užsakymas: </strong>{{ order.id }}</p>
+<p><strong>Data: </strong>{{ order.date }}</p>
+<p><strong>Automobilis: </strong>
+    {% if order.car %}
+        {{ order.car.make }} {{ order.car.model }}
+    {% else %}
+        Nėra automobilio
+    {% endif %}
+</p>
+
+<h3>Paslaugos:</h3>
+<ul>
+{% for line in order.lines.all %}
+    <li>{{ line.service.name }} x {{ line.quantity }} ({{ line.line_sum }} €)</li>
+{% endfor %}
+</ul>
+
+<p><strong>Viso: </strong>{{ order.total }} €</p>
+{% endblock %}
