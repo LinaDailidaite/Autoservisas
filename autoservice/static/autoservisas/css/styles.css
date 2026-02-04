@@ -106,3 +106,32 @@ body .btn-custom:hover {
 .services-list {
     background: transparent !important;
 }
+
+
+.btn-custom {
+    background-color: #d9534f;
+    border: none;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: #b52b27;
+    transform: scale(1.05);
+}
+
+.custom-reset-link {
+    color: #ECECEC;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: 0.3s;
+    display: block;
+    text-align: center;
+}
+
+.custom-reset-link:hover {
+    color: #2C3930;
+    text-decoration: underline;
+}
