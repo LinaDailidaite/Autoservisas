@@ -1,4 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
+from django.contrib import admin
+from tinymce.models import HTMLField
 
 class Service(models.Model):
     name = models.CharField(verbose_name="Name", max_length=200)
@@ -19,6 +23,7 @@ class Car(models.Model):
     vin_code = models.CharField(verbose_name='VIN code')
     client_name = models.CharField(verbose_name="Client name")
     cover = models.ImageField('Viršelis', upload_to='covers', null=True, blank=True)
+    description = HTMLField(verbose_name="Description", max_length=3000, default="")
 
     def __str__(self):
         return f"{self.make} {self.model}"
@@ -27,6 +32,13 @@ class Car(models.Model):
 class Order(models.Model):
     date = models.DateField(verbose_name="Date", auto_now_add=True)
     car = models.ForeignKey(to="Car", on_delete=models.SET_NULL, null=True, blank=True)
+    reader = models.ForeignKey(to=User, verbose_name="Reader", on_delete=models.SET_NULL, null=True, blank=True)
+    due_back = models.DateField(verbose_name="Bus grąžinta", null=True, blank=True)
+    @admin.display(boolean=True, description='Bus grąžinta laiku / Vėluoja')
+    def is_on_time(self):
+        if not self.due_back:
+            return True
+        return timezone.now().date() <= self.due_back
     LOAN_STATUS = (
         ('p', 'Patvirtinta'),
         ('v', 'Vykdoma'),

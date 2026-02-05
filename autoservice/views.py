@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import Car, Service, Order, OrderLine
 from django.views import generic
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
     num_car = Car.objects.all().count()
@@ -69,3 +70,12 @@ def search(request):
         "cars": car_search_results
     }
     return render(request, "search.html", context=context)
+
+
+class MyOrdersListView(LoginRequiredMixin, generic.ListView):
+    model = Order
+    template_name = "my_orders.html"
+    context_object_name = "orders"
+
+    def get_queryset(self):
+        return Order.objects.filter(reader=self.request.user)

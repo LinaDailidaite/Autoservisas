@@ -7,7 +7,13 @@
 <p><strong>Automobilis: </strong>{{ car.make }} {{ car.model }}</p>
 <p><strong>Valstybinis numeris: </strong>{{ car.license_plate }}</p>
 <p><strong>VIN kodas: </strong>{{ car.vin_code }}</p>
+<div class="mt-4">
+    <h3 class="fw-bold" style="font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; letter-spacing: 0px;">Automobilio aprašymas:</h3>
+    <div class="p-3 border border-secondary rounded bg-dark">
+        {{ car.description|safe }}
+    </div>
+</div>
 {% if car.cover %}
-<img class="card-img-top mb-3" style="max-width: 20%" src="{{ car.cover.url }}">
+<img class="card-img-top mb-2" style="max-width: 20%" src="{{ car.cover.url }}">
 {% endif %}
 {% endblock %}

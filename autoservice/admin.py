@@ -12,7 +12,7 @@ class OrderLineInline(admin.TabularInline):
     autocomplete_fields = ['service']
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['car', 'date', 'total']
+    list_display = ['car', 'date', 'due_back', 'is_on_time', 'reader', 'total']
     inlines = [OrderLineInline]
 
 class OrderLineAdmin(admin.ModelAdmin):
