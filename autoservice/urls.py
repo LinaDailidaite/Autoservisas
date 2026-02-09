@@ -12,4 +12,5 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('accounts/', include('django.contrib.auth.urls')),
     path("myorders/", views.MyOrdersListView.as_view(), name="myorders"),
+    path('signup/', views.SignUpView.as_view(), name='signup'),
 ]

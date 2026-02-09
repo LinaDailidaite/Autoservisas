@@ -73,3 +73,14 @@ class OrderLine(models.Model):
     def line_sum(self):
         return float(self.quantity * self.service.price)
     line_sum.short_description = "Line sum (€)"
+
+class OrderReview(models.Model):
+    order = models.ForeignKey(to="Order", verbose_name="Order", on_delete=models.SET_NULL, null=True, blank=True, related_name="reviews")
+    reviewer = models.ForeignKey(to=User, verbose_name="Reviewer", on_delete=models.SET_NULL, null=True, blank=True)
+    date_created = models.DateTimeField(verbose_name="Date Created", auto_now_add=True)
+    content = models.TextField(verbose_name="Content", max_length=2000)
+
+    class Meta:
+        verbose_name = "Order Review"
+        verbose_name_plural = 'Order Reviews'
+        ordering = ['-date_created']

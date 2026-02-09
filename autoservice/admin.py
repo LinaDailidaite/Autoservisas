@@ -1,4 +1,4 @@
-from .models import Service, Car, Order, OrderLine
+from .models import Service, Car, Order, OrderLine, OrderReview
 from django.contrib import admin
 
 class ServiceAdmin(admin.ModelAdmin):
@@ -23,8 +23,11 @@ class CarAdmin(admin.ModelAdmin):
     list_filter = ['make', 'model', 'client_name']
     search_fields = ['license_plate', 'vin_code']
 
+class OrderReviewAdmin(admin.ModelAdmin):
+    list_display = ['order', 'date_created', 'reviewer', 'content']
 
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(Car, CarAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderLine, OrderLineAdmin)
+admin.site.register(OrderReview, OrderReviewAdmin)

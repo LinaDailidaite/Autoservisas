@@ -15,6 +15,13 @@ h2 {
   color: whitesmoke;
   text-align: center;
 }
+
+h5 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  color: whitesmoke;
+  text-align: center;
+}
 p {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 30px;
@@ -91,7 +98,7 @@ body .btn-custom:hover {
 }
 
 .service-name {
-    font-family: 'Jost', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 1.2rem;
     color: #333;
 }
@@ -134,4 +141,34 @@ body .btn-custom:hover {
 .custom-reset-link:hover {
     color: #2C3930;
     text-decoration: underline;
+}
+
+.comments-title {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.reviewer-name {
+    font-family: 'Bebas Neue', sans-serif; !important;
+    color: #fffff;
+    font-size: 1.3rem;
+}
+
+.review-content,
+.review-item p {
+    font-family: 'Bebas Neue', sans-serif !important;
+    color: #fffff;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+}
+.custom-form-dark textarea {
+    background-color: #ECECEC !important;
+    border: 1px solid #6c757d !important;
+    color: fffff !important;
+    font-size: 1.3rem;
+    border-radius: 4px;
+}
+.text-muted {
+    font-family: 'Bebas Neue', sans-serif !important;
 }
