@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render, reverse, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponse
-from .models import Car, Service, Order, OrderLine
+from .models import Car, Service, Order, OrderLine, CustomUser
 from django.views import generic
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,6 +9,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from .forms import OrderReviewForm
 from django.views.generic.edit import FormMixin
+from django.contrib.auth.models import User
+from .forms import UserChangeForm
+from .forms import CustomUserChangeForm
+from .forms import OrderReviewForm, UserChangeForm, CustomUserCreationForm
 
 def index(request):
     num_car = Car.objects.all().count()
@@ -103,6 +107,14 @@ class MyOrdersListView(LoginRequiredMixin, generic.ListView):
         return Order.objects.filter(reader=self.request.user)
 
 class SignUpView(generic.CreateView):
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     template_name = "signup.html"
     success_url = reverse_lazy("login")
+
+class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
+    form_class = CustomUserChangeForm
+    template_name = "profile.html"
+    success_url = reverse_lazy('profile')
+
+    def get_object(self, queryset=None):
+        return self.request.user

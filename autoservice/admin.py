@@ -1,5 +1,6 @@
-from .models import Service, Car, Order, OrderLine, OrderReview
+from .models import Service, Car, Order, OrderLine, OrderReview, CustomUser
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
 class ServiceAdmin(admin.ModelAdmin):
     search_fields = ['name']
@@ -26,8 +27,14 @@ class CarAdmin(admin.ModelAdmin):
 class OrderReviewAdmin(admin.ModelAdmin):
     list_display = ['order', 'date_created', 'reviewer', 'content']
 
+class CustomUserAdmin(UserAdmin):
+    fieldsets = UserAdmin.fieldsets + (
+        ("Additional Info", {"fields": ("photo", )}),
+    )
+
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(Car, CarAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderLine, OrderLineAdmin)
 admin.site.register(OrderReview, OrderReviewAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)

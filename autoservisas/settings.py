@@ -140,6 +140,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'test@gmail.com'
 EMAIL_HOST_PASSWORD = 'testtest'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+AUTH_USER_MODEL = 'autoservice.CustomUser'
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,

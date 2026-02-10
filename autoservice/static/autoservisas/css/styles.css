@@ -1,61 +1,60 @@
+/* --- PAGRINDINIAI --- */
 body {
-  background-color: #A27B5C;
+    background-color: #A27B5C;
 }
 
 h1 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 60px;
-  color: whitesmoke;
-  text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 60px;
+    color: whitesmoke;
+    text-align: center;
 }
 
-h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 30px;
-  color: whitesmoke;
-  text-align: center;
+h2, h5 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    color: whitesmoke;
+    text-align: center;
 }
 
-h5 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 30px;
-  color: whitesmoke;
-  text-align: center;
-}
-p {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 30px;
+p, .text-muted {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 30px;
 }
 
-.report-block {
-  font-family: "Jost", sans-serif;
-  color: whitesmoke;
-  text-align: left;
-  font-size: 30px
-}
-
+/* --- NAVIGACIJA --- */
 .navbar-dark .nav-link {
     font-family: 'Bebas Neue', sans-serif;
-    color: #whitesmoke;
-    font-size: 30px
+    color: whitesmoke;
+    font-size: 30px;
 }
 
 .navbar-dark .nav-link:hover {
     color: #ffffff;
 }
 
+/* --- SEKCIJOS IR BLOKAI --- */
+.section1,
+.section2 {
+    background-color: #A27B5C;
+}
 
 .section1 {
-    background-color: #A27B5C;
     color: whitesmoke;
 }
 
 .section2 {
-    background-color: #A27B5C;
     color: #fff;
     width: 100%;
     padding: 20px;
-    text-align: center
+    text-align: center;
+}
+
+.report-block {
+    font-family: "Jost", sans-serif;
+    color: whitesmoke;
+    text-align: left;
+    font-size: 30px;
 }
 
 .bg-dark {
@@ -70,22 +69,7 @@ p {
     background-color: #2C3930 !important;
 }
 
-/* mygtuko stilius */
- body .btn-custom {
-    background-color: #3F4F44 !important;
-    color: #ECECEC !important;
-    border: 2px solid #a68a64 !important;
-    padding: 10px 25px !important;
-    display: inline-block !important;
-    font-family: 'Bebas Neue', sans-serif
-}
-
-/* Efektas užvedus pelę */
-body .btn-custom:hover {
-    background-color: #a68a64 !important;
-    color: white !important;
-}
-
+/* --- KORTELĖS IR PASLAUGOS --- */
 .card {
     border: none;
     background-color: #ECECEC;
@@ -114,19 +98,20 @@ body .btn-custom:hover {
     background: transparent !important;
 }
 
-
-.btn-custom {
-    background-color: #d9534f;
-    border: none;
+/* --- MYGTUKAI IR NUORODOS --- */
+body .btn-custom {
+    background-color: #3F4F44 !important;
+    color: #ECECEC !important;
+    border: 2px solid #a68a64 !important;
+    padding: 10px 25px !important;
+    display: inline-block !important;
     font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 1px;
-    padding: 10px 20px;
-    transition: 0.3s;
+    font-size: 1.2rem;
 }
 
-.btn-custom:hover {
-    background-color: #b52b27;
-    transform: scale(1.05);
+body .btn-custom:hover {
+    background-color: #a68a64 !important;
+    color: white !important;
 }
 
 .custom-reset-link {
@@ -143,6 +128,7 @@ body .btn-custom:hover {
     text-decoration: underline;
 }
 
+/* --- ATSILIEPIMAI --- */
 .comments-title {
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 2px;
@@ -150,25 +136,56 @@ body .btn-custom:hover {
 }
 
 .reviewer-name {
-    font-family: 'Bebas Neue', sans-serif; !important;
-    color: #fffff;
-    font-size: 1.3rem;
+    font-family: 'Bebas Neue', sans-serif !important;
+    color: #333;
+    letter-spacing: 0.5px;
+    font-size: 1.4rem;
 }
 
 .review-content,
 .review-item p {
     font-family: 'Bebas Neue', sans-serif !important;
-    color: #fffff;
+    color: #333;
     font-size: 1.6rem;
     letter-spacing: 0.5px;
 }
-.custom-form-dark textarea {
+.review-item small.text-muted {
+    font-size: 1.2rem;
+    font-family: 'Bebas Neue', sans-serif !important;
+}
+
+/* --- FORMOS IR PROFILIS --- */
+.custom-form-dark,
+.custom-form-dark input,
+.custom-form-dark textarea,
+.custom-form-dark select,
+.custom-form-dark label,
+.custom-form-dark button {
+    font-family: 'Bebas Neue', sans-serif !important;
+}
+
+.custom-form-dark textarea,
+.custom-form-dark input {
     background-color: #ECECEC !important;
     border: 1px solid #6c757d !important;
-    color: fffff !important;
+    color: #333 !important;
     font-size: 1.3rem;
     border-radius: 4px;
-}
-.text-muted {
     font-family: 'Bebas Neue', sans-serif !important;
+}
+
+.custom-form-dark label {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 1.2rem;
+}
+.custom-form-dark a,
+.custom-form-dark {
+    font-family: 'Bebas Neue', sans-serif !important;
+    font-size: 1.2rem;
+}
+
+.profile-info {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: #333
 }

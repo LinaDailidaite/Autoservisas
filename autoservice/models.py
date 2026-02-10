@@ -1,8 +1,25 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 from django.utils import timezone
 from django.contrib import admin
 from tinymce.models import HTMLField
+from PIL import Image
+
+class CustomUser(AbstractUser):
+    photo = models.ImageField(upload_to="profile_pics", null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.photo:
+            img = Image.open(self.photo.path)
+            min_side = min(img.width, img.height)
+            left = (img.width - min_side) // 2
+            top = (img.height - min_side) // 2
+            right = left + min_side
+            bottom = top + min_side
+            img = img.crop((left, top, right, bottom))
+            img = img.resize((300, 300), Image.LANCZOS)
+            img.save(self.photo.path)
 
 class Service(models.Model):
     name = models.CharField(verbose_name="Name", max_length=200)
@@ -32,7 +49,7 @@ class Car(models.Model):
 class Order(models.Model):
     date = models.DateField(verbose_name="Date", auto_now_add=True)
     car = models.ForeignKey(to="Car", on_delete=models.SET_NULL, null=True, blank=True)
-    reader = models.ForeignKey(to=User, verbose_name="Reader", on_delete=models.SET_NULL, null=True, blank=True)
+    reader = models.ForeignKey(to="autoservice.CustomUser", verbose_name="Reader", on_delete=models.SET_NULL, null=True, blank=True)
     due_back = models.DateField(verbose_name="Bus grąžinta", null=True, blank=True)
     @admin.display(boolean=True, description='Bus grąžinta laiku / Vėluoja')
     def is_on_time(self):
@@ -76,7 +93,7 @@ class OrderLine(models.Model):
 
 class OrderReview(models.Model):
     order = models.ForeignKey(to="Order", verbose_name="Order", on_delete=models.SET_NULL, null=True, blank=True, related_name="reviews")
-    reviewer = models.ForeignKey(to=User, verbose_name="Reviewer", on_delete=models.SET_NULL, null=True, blank=True)
+    reviewer = models.ForeignKey(to="autoservice.CustomUser", verbose_name="Reviewer", on_delete=models.SET_NULL, null=True, blank=True)
     date_created = models.DateTimeField(verbose_name="Date Created", auto_now_add=True)
     content = models.TextField(verbose_name="Content", max_length=2000)
 
