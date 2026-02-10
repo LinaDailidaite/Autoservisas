@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Mano užsakymai</h1>
+    <div class="list-group">
+        {% for order in orders %}
+            <a href="{% url 'order' order.id %}" class="list-group-item list-group-item-action bg-dark text-white border-secondary mb-2 py-3 px-4">
+                <div class="d-flex w-100 justify-content-between align-items-center fs-3" style="letter-spacing: 1px;">
+                    <span>
+                        <strong>{{ order.car }}</strong>
+                        <span class="text-muted ms-2">({{ order.date }})</span>
+                    </span>
+
+                    {% if not order.is_on_time %}
+                        <span class="badge bg-danger">VĖLUOJA!</span>
+                    {% endif %}
+                </div>
+            </a>
+        {% empty %}
+            <p>Jūs dar neturite užsakymų.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
