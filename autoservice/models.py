@@ -4,13 +4,14 @@ from django.utils import timezone
 from django.contrib import admin
 from tinymce.models import HTMLField
 from PIL import Image
+import os
 
 class CustomUser(AbstractUser):
     photo = models.ImageField(upload_to="profile_pics", null=True, blank=True)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        if self.photo:
+        if self.photo and os.path.exists(self.photo.path):
             img = Image.open(self.photo.path)
             min_side = min(img.width, img.height)
             left = (img.width - min_side) // 2

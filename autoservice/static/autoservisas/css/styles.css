@@ -128,6 +128,21 @@ body .btn-custom:hover {
     text-decoration: underline;
 }
 
+body .btn-red {
+    background-color: #C40C0C !important;
+    color: #ECECEC !important;
+    border: 2px solid #a68a64 !important;
+    padding: 10px 25px !important;
+    display: inline-block !important;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+}
+
+body .btn-red:hover {
+    background-color: #740A03 !important;
+    color: white !important;
+}
+
 /* --- ATSILIEPIMAI --- */
 .comments-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -188,4 +203,9 @@ body .btn-custom:hover {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.3rem;
     color: #333
+}
+
+.custom-legend {
+    font-family: 'Bebas Neue', sans-serif;
+    border-bottom: 3px solid #4a5d4e !important;
 }

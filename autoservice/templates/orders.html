@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container mt-4">
     <h1 class="mb-4">Užsakymai:</h1>
-
+    <a class="btn btn-custom btn-sm mt-1 mb-3" href="{% url 'order-create' %}">Naujas užsakymas</a>
     {% if orders %}
     <div class="table-responsive shadow-sm bg-white rounded p-3" style="background-color: #fdfaf5 !important; border: 1px solid #e2d1b9;">
         <table class="table table-hover align-middle">

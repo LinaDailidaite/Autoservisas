@@ -21,12 +21,22 @@
 </div>
 <div class="mt-3">
     <h3 style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 0px; font-weight: 900;" class="fw-bold">PASLAUGOS:</h3>
+
+    {% if user.is_staff %}
+        <a href="{% url 'order-line-create' order.id %}" class="btn btn-custom btn-sm mb-3">Pridėti paslaugą</a>
+    {% endif %}
+
     <div class="services-list">
         {% for line in order.lines.all %}
             <div class="d-flex justify-content-between">
                 <span class="service-name text-uppercase" style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px;">
                     {{ line.service.name }}
                     <span class="text-muted" style="font-size: 1.2rem;">x {{ line.quantity }}</span>
+
+                    {% if user.is_staff %}
+                        <a href="{% url 'order-line-update' line.id %}" class="btn btn-custom btn-sm">Redaguoti</a>
+                        <a href="{% url 'order-line-delete' line.id %}" class="btn btn-red btn-sm">Šalinti</a>
+                    {% endif %}
                 </span>
                 <span class="service-price fw-bold" style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;">
                     {{ line.line_sum }} €
@@ -36,6 +46,13 @@
     </div>
 </div>
 <p class="mt-3"><strong>Viso: </strong>{{ order.total }} €</p>
+<hr>
+<div>
+    {% if user.is_staff %}
+        <a class="btn btn-custom btn-sm mt-1 mb-1" href="{% url 'order-update' order.id %}">Redaguoti užsakymą</a>
+        <a class="btn btn-red btn-sm mt-1 mb-1" href="{% url 'order-delete' order.id %}">Ištrinti užsakymą</a>
+    {% endif %}
+</div>
 
 <a href="{% url 'myorders' %}" class="btn btn-custom mt-3">Atgal į mano užsakymus</a>
 <div class="row mt-5">

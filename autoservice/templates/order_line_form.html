@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <form method="POST">
+        {% csrf_token %}
+        <legend class="border-bottom mb-4 custom-legend">Pridėti/Redaguoti paslaugą</legend>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-custom">Išsaugoti</button>
+        {% if object.order %}
+            <a href="{% url 'order' object.order.id %}" class="btn btn-custom">Atšaukti</a>
+        {% else %}
+            <a href="{% url 'order' view.kwargs.pk %}" class="btn btn-custom">Atšaukti</a>
+        {% endif %}
+    </form>
+</div>
+{% endblock %}

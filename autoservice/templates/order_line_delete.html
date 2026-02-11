@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <form method="POST">
+        {% csrf_token %}
+        <legend class="border-bottom mb-4 custom-legend">Pašalinti paslaugą</legend>
+        <p>Ar tikrai norite pašalinti <strong>{{ object }}</strong>?</p>
+        <button type="submit" class="btn btn-red">Taip, pašalinti</button>
+        <a href="{% url 'order' object.order.pk %}" class="btn btn-custom">Atšaukti</a>
+    </form>
+</div>
+{% endblock %}
