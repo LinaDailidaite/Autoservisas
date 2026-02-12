@@ -1,15 +1,16 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block content %}
 <div class="content-section container mt-4">
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4 custom-legend">Užsakymo informacija</legend>
+            <legend class="border-bottom mb-4 custom-legend">{% trans "Order information" %}</legend>
             {{ form.as_p }}
         </fieldset>
         <div class="form-group mt-3">
-            <button class="btn btn-custom" type="submit">Išsaugoti</button>
-            <a class="btn btn-custom" href="{% url 'orders' %}">Atšaukti</a>
+            <button class="btn btn-custom" type="submit">{% trans "Save" %}</button>
+            <a class="btn btn-custom" href="{% url 'orders' %}">{% trans "Cancel" %}</a>
         </div>
     </form>
 </div>

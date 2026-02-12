@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}PRADŽIA{% endblock %}
-
+{% block title %}HOME{% endblock %}
+{% load i18n %}
 {% block content %}
     <div class ="section1">
-        <h1>Šiuo metu turime:</h1>
+        <h1>{% trans "At this moment we have:"%}</h1>
         <ul class="report-block">
-            <li><strong>Automobilių:</strong> {{ num_car }}</li>
-            <li><strong>Paslaugų:</strong> {{ num_service }}</li>
-            <li><strong>Užsakymų:</strong> {{ num_order }}</li>
-            <p>Čia jūs lankotės {{ num_visits }} kartą.</p>
+            <li><strong>{% trans "Cars" %}:</strong> {{ num_car }}</li>
+            <li><strong>{% trans "Services" %}:</strong> {{ num_service }}</li>
+            <li><strong>{% trans "Orders" %}:</strong> {{ num_order }}</li>
+            <p>{% trans "Visit number: " %} {{ num_visits }}</p>
         </ul>
     </div>
 
-    <div class="section2">
-        <h1>Kitas skyrius</h1>
-        <p>Čia gali būti papildoma informacija.</p>
-    </div>
+<!--    <div class="section2">-->
+<!--        <h1>Next chapter</h1>-->
+<!--        <p>Here you can put some additional info.</p>-->
+<!--    </div>-->
 
 {% endblock %}

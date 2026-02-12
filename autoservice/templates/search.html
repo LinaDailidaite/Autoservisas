@@ -1,15 +1,18 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Paieškos rezultatai{% endblock %}
+{% block title %}{% trans "Search results" %}{% endblock %}
 
 {% block content %}
-<h1>Automobiliai, rasti pagal paiešką "{{ query }}":</h1>
+<h1>
+    {% blocktrans with query=query %}Cars found in search "{{ query }}":{% endblocktrans %}
+</h1>
 <br>
 {% if cars %}
-{% for car in cars %}
-<p><a href="{% url 'car' car.pk %}">{{ car }}</a></p>
-{% endfor %}
+    {% for car in cars %}
+        <p><a href="{% url 'car' car.pk %}">{{ car }}</a></p>
+    {% endfor %}
 {% else %}
-<p>Oops. Nieko neradome.</p>
+    <p>{% trans "Oops. Did not find anything." %}</p>
 {% endif %}
 {% endblock %}

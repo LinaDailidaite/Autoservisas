@@ -1,17 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Automobiliai{% endblock %}
+{% block title %}{% trans "Cars" %}{% endblock %}
 
 {% block content %}
-<h1 class="mt-4">Mūsų automobiliai</h1>
-<p class="text-muted">Automobilių sąrašas:</p>
+<h1 class="mt-4">{% trans "Our cars" %}</h1>
+<p class="text-muted">{% trans "Car list" %}:</p>
 <hr>
 
 <div class="row">
     {% for car in cars %}
     <div class="col-md-4 d-flex align-items-stretch">
-        <div class="card mb-4 shadow-sm w-100"> {% if car.cover %}
+        <div class="card mb-4 shadow-sm w-100">
+            {% if car.cover %}
                 <img src="{{ car.cover.url }}" class="card-img-top" alt="{{ car.model }}" style="height: 300px; object-fit: cover;">
             {% else %}
                 <img src="{% static 'img/no-image.png' %}" class="card-img-top" style="height: 300px; object-fit: cover;">
@@ -19,20 +21,22 @@
 
             <div class="card-body">
                 <h5 class="card-title">{{ car.make }} {{ car.model }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Valst. nr: {{ car.license_plate }}</h6>
-                <p class="card-text">Klientas: {{ car.client_name }}</p>
-                <a href="{% url 'car' car.id %}" class="btn btn-custom">Plačiau</a>
+                <h6 class="card-subtitle mb-2 text-muted">{% trans "License plate" %}: {{ car.license_plate }}</h6>
+                <p class="card-text">{% trans "Client" %}: {{ car.client_name }}</p>
+                <a href="{% url 'car' car.id %}" class="btn btn-custom">{% trans "More" %}</a>
             </div>
         </div>
     </div>
     {% empty %}
-        <p>Šiuo metu automobilių nėra.</p>
+        <div class="col-12">
+            <p>{% trans "There are no cars at the moment." %}</p>
+        </div>
     {% endfor %}
 </div>
 
 {% if cars.has_other_pages %}
 <div class="container mt-4">
-    <nav aria-label="Puslapiavimas">
+    <nav aria-label="{% trans 'Paginator' %}">
         <ul class="pagination pagination-sm justify-content-center">
             {% for i in cars.paginator.page_range %}
                 {% if cars.number == i %}

@@ -1,14 +1,15 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Automobilis{% endblock %}
+{% block title %}{% trans "Car" %}{% endblock %}
 
 {% block content %}
-<p><strong>Savininkas: </strong>{{ car.client_name }}</p>
-<p><strong>Automobilis: </strong>{{ car.make }} {{ car.model }}</p>
-<p><strong>Valstybinis numeris: </strong>{{ car.license_plate }}</p>
-<p><strong>VIN kodas: </strong>{{ car.vin_code }}</p>
+<p><strong>{% trans "Owner" %}: </strong>{{ car.client_name }}</p>
+<p><strong>{% trans "Car" %}: </strong>{{ car.make }} {{ car.model }}</p>
+<p><strong>{% trans "License plate" %}: </strong>{{ car.license_plate }}</p>
+<p><strong>{% trans "VIN code" %}: </strong>{{ car.vin_code }}</p>
 <div class="mt-4">
-    <h3 class="fw-bold" style="font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; letter-spacing: 0px;">Automobilio aprašymas:</h3>
+    <h3 class="fw-bold" style="font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem; letter-spacing: 0px;">{% trans "Car description" %}:</h3>
     <div class="p-3 border border-secondary rounded bg-dark">
         {{ car.description|safe }}
     </div>

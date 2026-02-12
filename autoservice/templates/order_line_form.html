@@ -1,15 +1,17 @@
 {% extends "base.html" %}
+{% load i18n %}
+
 {% block content %}
 <div class="container mt-4">
     <form method="POST">
         {% csrf_token %}
-        <legend class="border-bottom mb-4 custom-legend">Pridėti/Redaguoti paslaugą</legend>
+        <legend class="border-bottom mb-4 custom-legend">{% trans "Add/Update service" %}</legend>
         {{ form.as_p }}
-        <button type="submit" class="btn btn-custom">Išsaugoti</button>
+        <button type="submit" class="btn btn-custom">{% trans "Save" %}</button>
         {% if object.order %}
-            <a href="{% url 'order' object.order.id %}" class="btn btn-custom">Atšaukti</a>
+            <a href="{% url 'order' object.order.id %}" class="btn btn-custom">{% trans "Cancel" %}</a>
         {% else %}
-            <a href="{% url 'order' view.kwargs.pk %}" class="btn btn-custom">Atšaukti</a>
+            <a href="{% url 'order' view.kwargs.pk %}" class="btn btn-custom">{% trans "Cancel" %}</a>
         {% endif %}
     </form>
 </div>

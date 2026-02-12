@@ -1,21 +1,22 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Užsakymai{% endblock %}
+{% block title %}{% trans "Orders" %}{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <h1 class="mb-4">Užsakymai:</h1>
-    <a class="btn btn-custom btn-sm mt-1 mb-3" href="{% url 'order-create' %}">Naujas užsakymas</a>
+    <h1 class="mb-4">{% trans "Orders" %}:</h1>
+    <a class="btn btn-custom btn-sm mt-1 mb-3" href="{% url 'order-create' %}">{% trans "New order" %}</a>
     {% if orders %}
     <div class="table-responsive shadow-sm bg-white rounded p-3" style="background-color: #fdfaf5 !important; border: 1px solid #e2d1b9;">
         <table class="table table-hover align-middle">
             <thead style="background-color: #4a5d4e; color: white;">
                 <tr>
-                    <th>Data</th>
-                    <th>Automobilis</th>
-                    <th>Suma (€)</th>
-                    <th>Statusas</th>
-                    <th class="text-end">Veiksmas</th>
+                    <th>{% trans "Date" %}</th>
+                    <th>{% trans "Car" %}</th>
+                    <th>{% trans "Sum" %} (€)</th>
+                    <th>{% trans "Status" %}</th>
+                    <th class="text-end">{% trans "Action" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,7 +35,7 @@
                         </span>
                     </td>
                     <td class="text-end">
-                        <a href="{% url 'order' order.id %}" class="btn btn-sm btn-custom">Plačiau</a>
+                        <a href="{% url 'order' order.id %}" class="btn btn-sm btn-custom">{% trans "More" %}</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -42,25 +43,25 @@
         </table>
     </div>
     {% else %}
-        <p class="alert alert-info">Užsakymų šiuo metu nėra.</p>
+        <p class="alert alert-info">{% trans "There are no orders yet." %}</p>
     {% endif %}
 
-    <nav aria-label="Page navigation" class="mt-4">
+    <nav aria-label="{% trans 'Page navigation' %}" class="mt-4">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
-                <li class="page-item"><a class="page-link" href="?page=1">&laquo; pirmas</a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">atgal</a></li>
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo; {% trans "first" %}</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "back" %}</a></li>
             {% endif %}
 
             <li class="page-item disabled">
                 <span class="page-link text-dark">
-                    {{ page_obj.number }} iš {{ page_obj.paginator.num_pages }}
+                    {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
                 </span>
             </li>
 
             {% if page_obj.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">pirmyn</a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">paskutinis &raquo;</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "next" %}</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{% trans "last" %} &raquo;</a></li>
             {% endif %}
         </ul>
     </nav>

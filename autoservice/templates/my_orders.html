@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 <div class="container mt-4">
-    <h1>Mano užsakymai</h1>
+    <h1>{% trans "My orders" %}</h1>
     <div class="list-group">
         {% for order in orders %}
             <a href="{% url 'order' order.id %}" class="list-group-item list-group-item-action bg-dark text-white border-secondary mb-2 py-3 px-4">
@@ -13,12 +14,12 @@
                     </span>
 
                     {% if not order.is_on_time %}
-                        <span class="badge bg-danger">VĖLUOJA!</span>
+                        <span class="badge bg-danger">{% trans "DELAYED!" %}</span>
                     {% endif %}
                 </div>
             </a>
         {% empty %}
-            <p>Jūs dar neturite užsakymų.</p>
+            <p>{% trans "You do not have any orders yet." %}</p>
         {% endfor %}
     </div>
 </div>

@@ -1,12 +1,14 @@
 {% extends "base.html" %}
+{% load i18n %}
+
 {% block content %}
 <div class="container mt-4">
     <form method="POST">
         {% csrf_token %}
-        <legend class="border-bottom mb-4 custom-legend">Pašalinti paslaugą</legend>
-        <p>Ar tikrai norite pašalinti <strong>{{ object }}</strong>?</p>
-        <button type="submit" class="btn btn-red">Taip, pašalinti</button>
-        <a href="{% url 'order' object.order.pk %}" class="btn btn-custom">Atšaukti</a>
+        <legend class="border-bottom mb-4 custom-legend">{% trans "Delete service" %}</legend>
+        <p>{% trans "Are you sure you want to delete service" %} <strong>{{ object }}</strong>?</p>
+        <button type="submit" class="btn btn-red">{% trans "Yes, delete" %}</button>
+        <a href="{% url 'order' object.order.pk %}" class="btn btn-custom">{% trans "Cancel" %}</a>
     </form>
 </div>
 {% endblock %}

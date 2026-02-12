@@ -20,4 +20,5 @@ urlpatterns = [
     path("order/<int:pk>/add_line/", views.OrderLineCreateView.as_view(), name="order-line-create"),
     path("order_line/<int:pk>/update/", views.OrderLineUpdateView.as_view(), name="order-line-update"),
     path("order_line/<int:pk>/delete/", views.OrderLineDeleteView.as_view(), name="order-line-delete"),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]

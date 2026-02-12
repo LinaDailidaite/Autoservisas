@@ -1,29 +1,30 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Užsakymas{% endblock %}
+{% block title %}{% trans "Order" %}{% endblock %}
 
 {% block content %}
-<p><strong>Užsakymas: </strong>{{ order.id }}</p>
-<p><strong>Data: </strong>{{ order.date }}</p>
-<p><strong>Automobilis: </strong>
+<p><strong>{% trans "Order" %}: </strong>{{ order.id }}</p>
+<p><strong>{% trans "Date" %}: </strong>{{ order.date }}</p>
+<p><strong>{% trans "Car" %}: </strong>
     {% if order.car %}
         {{ order.car.make }} {{ order.car.model }}
     {% else %}
-        Nėra automobilio
+        {% trans "There are no cars." %}
     {% endif %}
 </p>
 
 <div class="mt-4 mb-4">
-    <h3 style="font-family: 'Bebas Neue', sans-serif; font-weight: 900;">APRAŠYMAS:</h3>
+    <h3 style="font-family: 'Bebas Neue', sans-serif; font-weight: 900;">{% trans "DESCRIPTION" %}:</h3>
     <div class="p-3 border border-secondary rounded bg-dark">
         {{ order.car.description|safe }}
     </div>
 </div>
 <div class="mt-3">
-    <h3 style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 0px; font-weight: 900;" class="fw-bold">PASLAUGOS:</h3>
+    <h3 style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 0px; font-weight: 900;" class="fw-bold">{% trans "SERVICES" %}:</h3>
 
     {% if user.is_staff %}
-        <a href="{% url 'order-line-create' order.id %}" class="btn btn-custom btn-sm mb-3">Pridėti paslaugą</a>
+        <a href="{% url 'order-line-create' order.id %}" class="btn btn-custom btn-sm mb-3">{% trans "Add service" %}</a>
     {% endif %}
 
     <div class="services-list">
@@ -34,8 +35,8 @@
                     <span class="text-muted" style="font-size: 1.2rem;">x {{ line.quantity }}</span>
 
                     {% if user.is_staff %}
-                        <a href="{% url 'order-line-update' line.id %}" class="btn btn-custom btn-sm">Redaguoti</a>
-                        <a href="{% url 'order-line-delete' line.id %}" class="btn btn-red btn-sm">Šalinti</a>
+                        <a href="{% url 'order-line-update' line.id %}" class="btn btn-custom btn-sm">{% trans "Edit" %}</a>
+                        <a href="{% url 'order-line-delete' line.id %}" class="btn btn-red btn-sm">{% trans "Delete" %}</a>
                     {% endif %}
                 </span>
                 <span class="service-price fw-bold" style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem;">
@@ -45,31 +46,32 @@
         {% endfor %}
     </div>
 </div>
-<p class="mt-3"><strong>Viso: </strong>{{ order.total }} €</p>
+<p class="mt-3"><strong>{% trans "Total" %}: </strong>{{ order.total }} €</p>
 <hr>
 <div>
     {% if user.is_staff %}
-        <a class="btn btn-custom btn-sm mt-1 mb-1" href="{% url 'order-update' order.id %}">Redaguoti užsakymą</a>
-        <a class="btn btn-red btn-sm mt-1 mb-1" href="{% url 'order-delete' order.id %}">Ištrinti užsakymą</a>
+        <a class="btn btn-custom btn-sm mt-1 mb-1" href="{% url 'order-update' order.id %}">{% trans "Update order" %}</a>
+        <a class="btn btn-red btn-sm mt-1 mb-1" href="{% url 'order-delete' order.id %}">{% trans "Delete order" %}</a>
     {% endif %}
 </div>
 
-<a href="{% url 'myorders' %}" class="btn btn-custom mt-3">Atgal į mano užsakymus</a>
+<a href="{% url 'myorders' %}" class="btn btn-custom mt-3">{% trans "Back to my orders" %}</a>
+
 <div class="row mt-5">
     <div class="col-md-8 mx-auto form-container">
-        <h5>Komentarai</h5>
+        <h5>{% trans "Comments" %}</h5>
 
         {% if user.is_authenticated %}
         <div class="card bg-dark text-white border-secondary mb-4">
             <div class="card-body">
-                <h5>Palikite atsiliepimą</h5>
+                <h5>{% trans "Leave a comment" %}</h5>
                 <form method="post">
                     {% csrf_token %}
                     {% load crispy_forms_tags %}
                     <div class="custom-form-dark">
                         {{ form | crispy }}
                     </div>
-                    <button type="submit" class="btn btn-custom w-20">Paskelbti</button>
+                    <button type="submit" class="btn btn-custom w-20">{% trans "Publish" %}</button>
                 </form>
             </div>
         </div>
@@ -93,7 +95,7 @@
             </div>
             {% endfor %}
         {% else %}
-            <p class="text-muted">Komentarų kol kas nėra.</p>
+            <p class="text-muted">{% trans "There are no comments yet." %}</p>
         {% endif %}
     </div>
 </div>

@@ -1,14 +1,15 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block content %}
 <div class="container mt-4">
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <h2>Ar tikrai norite ištrinti užsakymą: {{ object }}?</h2>
+            <h2>{% trans "Are you sure you want to delete order:" %} {{ object }}?</h2>
         </fieldset>
         <div class="form-group mt-3">
-            <button class="btn btn-red" type="submit">Taip, ištrinti</button>
-            <a class="btn btn-custom" href="{% url 'orders' %}">Atšaukti</a>
+            <button class="btn btn-red" type="submit">{% trans "Yes, delete" %}</button>
+            <a class="btn btn-custom" href="{% url 'orders' %}">{% trans "Cancel" %}</a>
         </div>
     </form>
 </div>
